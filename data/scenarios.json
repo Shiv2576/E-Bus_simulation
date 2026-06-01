@@ -1,0 +1,1228 @@
+{
+  "scenarios": [
+    {
+      "name": "Scenario 1 — Even spacing",
+      "description": "Buses depart every 15 minutes in each direction starting 19:00. Baseline case.",
+      "buses": [
+        {
+          "id": "bus-BK-01",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-BK-02",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:15"
+        },
+        {
+          "id": "bus-BK-03",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:30"
+        },
+        {
+          "id": "bus-BK-04",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:45"
+        },
+        {
+          "id": "bus-BK-05",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "20:00"
+        },
+        {
+          "id": "bus-BK-06",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "20:15"
+        },
+        {
+          "id": "bus-BK-07",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:30"
+        },
+        {
+          "id": "bus-BK-08",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "20:45"
+        },
+        {
+          "id": "bus-BK-09",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "21:00"
+        },
+        {
+          "id": "bus-BK-10",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "21:15"
+        },
+        {
+          "id": "bus-KB-01",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-KB-02",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "19:15"
+        },
+        {
+          "id": "bus-KB-03",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:30"
+        },
+        {
+          "id": "bus-KB-04",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:45"
+        },
+        {
+          "id": "bus-KB-05",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "20:00"
+        },
+        {
+          "id": "bus-KB-06",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "20:15"
+        },
+        {
+          "id": "bus-KB-07",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "20:30"
+        },
+        {
+          "id": "bus-KB-08",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "20:45"
+        },
+        {
+          "id": "bus-KB-09",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "21:00"
+        },
+        {
+          "id": "bus-KB-10",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "21:15"
+        }
+      ]
+    },
+    {
+      "name": "Scenario 2 — Bunched start",
+      "description": "Buses from both directions depart in a tight cluster (every 8 min) over the first 50 minutes, then space out. Creates heavy early contention.",
+      "buses": [
+        {
+          "id": "bus-BK-01",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-BK-02",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:08"
+        },
+        {
+          "id": "bus-BK-03",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:16"
+        },
+        {
+          "id": "bus-BK-04",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:24"
+        },
+        {
+          "id": "bus-BK-05",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:32"
+        },
+        {
+          "id": "bus-BK-06",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:40"
+        },
+        {
+          "id": "bus-BK-07",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:48"
+        },
+        {
+          "id": "bus-BK-08",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "20:03"
+        },
+        {
+          "id": "bus-BK-09",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "20:18"
+        },
+        {
+          "id": "bus-BK-10",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:33"
+        },
+        {
+          "id": "bus-KB-01",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-KB-02",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "19:08"
+        },
+        {
+          "id": "bus-KB-03",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:16"
+        },
+        {
+          "id": "bus-KB-04",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:24"
+        },
+        {
+          "id": "bus-KB-05",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "19:32"
+        },
+        {
+          "id": "bus-KB-06",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:40"
+        },
+        {
+          "id": "bus-KB-07",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:48"
+        },
+        {
+          "id": "bus-KB-08",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "20:03"
+        },
+        {
+          "id": "bus-KB-09",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "20:18"
+        },
+        {
+          "id": "bus-KB-10",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "20:33"
+        }
+      ]
+    },
+    {
+      "name": "Scenario 3 — Asymmetric load",
+      "description": "10 buses going Bengaluru → Kochi (15 min spacing), only 4 going Kochi → Bengaluru. Tests how the scheduler handles uneven traffic across directions.",
+      "buses": [
+        {
+          "id": "bus-BK-01",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-BK-02",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:15"
+        },
+        {
+          "id": "bus-BK-03",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:30"
+        },
+        {
+          "id": "bus-BK-04",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:45"
+        },
+        {
+          "id": "bus-BK-05",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "20:00"
+        },
+        {
+          "id": "bus-BK-06",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "20:15"
+        },
+        {
+          "id": "bus-BK-07",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:30"
+        },
+        {
+          "id": "bus-BK-08",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "20:45"
+        },
+        {
+          "id": "bus-BK-09",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "21:00"
+        },
+        {
+          "id": "bus-BK-10",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "21:15"
+        },
+        {
+          "id": "bus-KB-01",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-KB-02",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "19:35"
+        },
+        {
+          "id": "bus-KB-03",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "20:10"
+        },
+        {
+          "id": "bus-KB-04",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "20:45"
+        }
+      ]
+    },
+    {
+      "name": "Scenario 4 — Operator-heavy",
+      "description": "One operator (KPN) dominates the Bengaluru → Kochi fleet (8 of 10 buses). Tests operator fairness rules.",
+      "buses": [
+        {
+          "id": "bus-BK-01",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-BK-02",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:15"
+        },
+        {
+          "id": "bus-BK-03",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:30"
+        },
+        {
+          "id": "bus-BK-04",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:45"
+        },
+        {
+          "id": "bus-BK-05",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:00"
+        },
+        {
+          "id": "bus-BK-06",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:15"
+        },
+        {
+          "id": "bus-BK-07",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:30"
+        },
+        {
+          "id": "bus-BK-08",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:45"
+        },
+        {
+          "id": "bus-BK-09",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "21:00"
+        },
+        {
+          "id": "bus-BK-10",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "21:15"
+        },
+        {
+          "id": "bus-KB-01",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-KB-02",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "19:15"
+        },
+        {
+          "id": "bus-KB-03",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:30"
+        },
+        {
+          "id": "bus-KB-04",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:45"
+        },
+        {
+          "id": "bus-KB-05",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "20:00"
+        },
+        {
+          "id": "bus-KB-06",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "20:15"
+        },
+        {
+          "id": "bus-KB-07",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "20:30"
+        },
+        {
+          "id": "bus-KB-08",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "20:45"
+        },
+        {
+          "id": "bus-KB-09",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "21:00"
+        },
+        {
+          "id": "bus-KB-10",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "21:15"
+        }
+      ]
+    },
+    {
+      "name": "Scenario 5 — Worst case convergence",
+      "description": "All 20 buses dispatched within a 72-minute window (every 8 min) from both ends. Maximum contention at middle stations.",
+      "buses": [
+        {
+          "id": "bus-BK-01",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-BK-02",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:08"
+        },
+        {
+          "id": "bus-BK-03",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:16"
+        },
+        {
+          "id": "bus-BK-04",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:24"
+        },
+        {
+          "id": "bus-BK-05",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:32"
+        },
+        {
+          "id": "bus-BK-06",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:40"
+        },
+        {
+          "id": "bus-BK-07",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:48"
+        },
+        {
+          "id": "bus-BK-08",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:56"
+        },
+        {
+          "id": "bus-BK-09",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "20:04"
+        },
+        {
+          "id": "bus-BK-10",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:12"
+        },
+        {
+          "id": "bus-KB-01",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-KB-02",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "19:08"
+        },
+        {
+          "id": "bus-KB-03",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:16"
+        },
+        {
+          "id": "bus-KB-04",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:24"
+        },
+        {
+          "id": "bus-KB-05",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "19:32"
+        },
+        {
+          "id": "bus-KB-06",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:40"
+        },
+        {
+          "id": "bus-KB-07",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:48"
+        },
+        {
+          "id": "bus-KB-08",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "19:56"
+        },
+        {
+          "id": "bus-KB-09",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "20:04"
+        },
+        {
+          "id": "bus-KB-10",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "20:12"
+        }
+      ]
+    },
+    {
+      "name": "Scenario 6 — Single operator monopoly",
+      "description": "All 20 buses operated by KPN only. Tests if fairness rule breaks when only one operator exists.",
+      "buses": [
+        {
+          "id": "bus-BK-01",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-BK-02",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:15"
+        },
+        {
+          "id": "bus-BK-03",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:30"
+        },
+        {
+          "id": "bus-BK-04",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:45"
+        },
+        {
+          "id": "bus-BK-05",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:00"
+        },
+        {
+          "id": "bus-BK-06",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:15"
+        },
+        {
+          "id": "bus-BK-07",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:30"
+        },
+        {
+          "id": "bus-BK-08",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:45"
+        },
+        {
+          "id": "bus-BK-09",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "21:00"
+        },
+        {
+          "id": "bus-BK-10",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "21:15"
+        },
+        {
+          "id": "bus-KB-01",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-KB-02",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:15"
+        },
+        {
+          "id": "bus-KB-03",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:30"
+        },
+        {
+          "id": "bus-KB-04",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:45"
+        },
+        {
+          "id": "bus-KB-05",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "20:00"
+        },
+        {
+          "id": "bus-KB-06",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "20:15"
+        },
+        {
+          "id": "bus-KB-07",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "20:30"
+        },
+        {
+          "id": "bus-KB-08",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "20:45"
+        },
+        {
+          "id": "bus-KB-09",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "21:00"
+        },
+        {
+          "id": "bus-KB-10",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "21:15"
+        }
+      ]
+    },
+    {
+      "name": "Scenario 7 — Forward-only assault",
+      "description": "15 buses Bengaluru → Kochi, only 5 reverse. Extreme directional imbalance tests station load distribution.",
+      "buses": [
+        {
+          "id": "bus-BK-01",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-BK-02",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:10"
+        },
+        {
+          "id": "bus-BK-03",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:20"
+        },
+        {
+          "id": "bus-BK-04",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:30"
+        },
+        {
+          "id": "bus-BK-05",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:40"
+        },
+        {
+          "id": "bus-BK-06",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:50"
+        },
+        {
+          "id": "bus-BK-07",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:00"
+        },
+        {
+          "id": "bus-BK-08",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:10"
+        },
+        {
+          "id": "bus-BK-09",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "20:20"
+        },
+        {
+          "id": "bus-BK-10",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "20:30"
+        },
+        {
+          "id": "bus-BK-11",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "20:40"
+        },
+        {
+          "id": "bus-BK-12",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "20:50"
+        },
+        {
+          "id": "bus-BK-13",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "21:00"
+        },
+        {
+          "id": "bus-BK-14",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "21:10"
+        },
+        {
+          "id": "bus-BK-15",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "21:20"
+        },
+        {
+          "id": "bus-KB-01",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-KB-02",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:30"
+        },
+        {
+          "id": "bus-KB-03",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "20:00"
+        },
+        {
+          "id": "bus-KB-04",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "20:30"
+        },
+        {
+          "id": "bus-KB-05",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "21:00"
+        }
+      ]
+    },
+    {
+      "name": "Scenario 8 — Midnight rush",
+      "description": "All 20 buses depart within 30 minutes (19:00-19:30, every 1.5 min). Extreme burst tests queue management limits.",
+      "buses": [
+        {
+          "id": "bus-BK-01",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-BK-02",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:02"
+        },
+        {
+          "id": "bus-BK-03",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:04"
+        },
+        {
+          "id": "bus-BK-04",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:06"
+        },
+        {
+          "id": "bus-BK-05",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:08"
+        },
+        {
+          "id": "bus-BK-06",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:10"
+        },
+        {
+          "id": "bus-BK-07",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:12"
+        },
+        {
+          "id": "bus-BK-08",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:14"
+        },
+        {
+          "id": "bus-BK-09",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:16"
+        },
+        {
+          "id": "bus-BK-10",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:18"
+        },
+        {
+          "id": "bus-KB-01",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-KB-02",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "19:02"
+        },
+        {
+          "id": "bus-KB-03",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:04"
+        },
+        {
+          "id": "bus-KB-04",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:06"
+        },
+        {
+          "id": "bus-KB-05",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "19:08"
+        },
+        {
+          "id": "bus-KB-06",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:10"
+        },
+        {
+          "id": "bus-KB-07",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:12"
+        },
+        {
+          "id": "bus-KB-08",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "19:14"
+        },
+        {
+          "id": "bus-KB-09",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:16"
+        },
+        {
+          "id": "bus-KB-10",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "19:18"
+        }
+      ]
+    },
+    {
+      "name": "Scenario 9 — Staggered operators",
+      "description": "Each operator's buses depart in their own cluster. KPN: 19:00-19:20, Freshbus: 20:00-20:20, Flixbus: 21:00-21:20.",
+      "buses": [
+        {
+          "id": "bus-BK-01",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-BK-02",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:05"
+        },
+        {
+          "id": "bus-BK-03",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:10"
+        },
+        {
+          "id": "bus-BK-04",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:15"
+        },
+        {
+          "id": "bus-BK-05",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:20"
+        },
+        {
+          "id": "bus-BK-06",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "20:00"
+        },
+        {
+          "id": "bus-BK-07",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "20:05"
+        },
+        {
+          "id": "bus-BK-08",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "20:10"
+        },
+        {
+          "id": "bus-BK-09",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "21:00"
+        },
+        {
+          "id": "bus-BK-10",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "21:05"
+        },
+        {
+          "id": "bus-KB-01",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-KB-02",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:05"
+        },
+        {
+          "id": "bus-KB-03",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:10"
+        },
+        {
+          "id": "bus-KB-04",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:15"
+        },
+        {
+          "id": "bus-KB-05",
+          "operator": "kpn",
+          "direction": "reverse",
+          "departure": "19:20"
+        },
+        {
+          "id": "bus-KB-06",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "20:00"
+        },
+        {
+          "id": "bus-KB-07",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "20:05"
+        },
+        {
+          "id": "bus-KB-08",
+          "operator": "freshbus",
+          "direction": "reverse",
+          "departure": "20:10"
+        },
+        {
+          "id": "bus-KB-09",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "21:00"
+        },
+        {
+          "id": "bus-KB-10",
+          "operator": "flixbus",
+          "direction": "reverse",
+          "departure": "21:05"
+        }
+      ]
+    },
+    {
+      "name": "Scenario 10 — Empty reverse",
+      "description": "20 forward buses only, zero reverse. Tests pure directional load with no cross-traffic interference.",
+      "buses": [
+        {
+          "id": "bus-BK-01",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:00"
+        },
+        {
+          "id": "bus-BK-02",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:08"
+        },
+        {
+          "id": "bus-BK-03",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:16"
+        },
+        {
+          "id": "bus-BK-04",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:24"
+        },
+        {
+          "id": "bus-BK-05",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:32"
+        },
+        {
+          "id": "bus-BK-06",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "19:40"
+        },
+        {
+          "id": "bus-BK-07",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "19:48"
+        },
+        {
+          "id": "bus-BK-08",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "19:56"
+        },
+        {
+          "id": "bus-BK-09",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "20:04"
+        },
+        {
+          "id": "bus-BK-10",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:12"
+        },
+        {
+          "id": "bus-BK-11",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "20:20"
+        },
+        {
+          "id": "bus-BK-12",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "20:28"
+        },
+        {
+          "id": "bus-BK-13",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "20:36"
+        },
+        {
+          "id": "bus-BK-14",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "20:44"
+        },
+        {
+          "id": "bus-BK-15",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "20:52"
+        },
+        {
+          "id": "bus-BK-16",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "21:00"
+        },
+        {
+          "id": "bus-BK-17",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "21:08"
+        },
+        {
+          "id": "bus-BK-18",
+          "operator": "flixbus",
+          "direction": "forward",
+          "departure": "21:16"
+        },
+        {
+          "id": "bus-BK-19",
+          "operator": "kpn",
+          "direction": "forward",
+          "departure": "21:24"
+        },
+        {
+          "id": "bus-BK-20",
+          "operator": "freshbus",
+          "direction": "forward",
+          "departure": "21:32"
+        }
+      ]
+    }
+  ]
+}

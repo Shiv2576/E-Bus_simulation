@@ -10,7 +10,7 @@ class OperatorConfig:
 
     def __init__(self, operator_id: str, priority_weight: float = 1.0, name: str = ""):
         self.operator_id = operator_id
-        self.priority_weight = priority_weight  # Higher = more priority at chargers
+        self.priority_weight = priority_weight
         self.name = name or operator_id
 
 
@@ -19,16 +19,12 @@ class ScoringSystem:
         self.w_individual = w_individual
         self.w_operator = w_operator
         self.w_overall = w_overall
-
         self.station_schedule = {}
         self.operator_wait_times: Dict[str, List[float]] = {}
         self.plan_assignments = {}
-
-        # NEW: Per-operator priority configuration
         self.operator_configs: Dict[str, OperatorConfig] = {}
 
     def add_operator(self, operator_id: str, priority_weight: float = 1.0):
-        """Add or update an operator with custom priority"""
         self.operator_configs[operator_id] = OperatorConfig(
             operator_id, priority_weight
         )
@@ -36,12 +32,10 @@ class ScoringSystem:
             self.operator_wait_times[operator_id] = []
 
     def remove_operator(self, operator_id: str):
-        """Remove an operator"""
         if operator_id in self.operator_configs:
             del self.operator_configs[operator_id]
 
     def get_operator_priority(self, operator_id: str) -> float:
-        """Get priority weight for an operator (default 1.0)"""
         if operator_id in self.operator_configs:
             return self.operator_configs[operator_id].priority_weight
         return 1.0
@@ -54,29 +48,25 @@ class ScoringSystem:
 
     def calculate_plan_score(self, bus, plan, simulation) -> float:
         metrics = self.simulate_plan_with_current_state(bus, plan, simulation)
-
         individual_cost = metrics["total_journey_time"]
         operator_cost = self._calculate_operator_cost(bus, metrics["wait_time"])
         balance_penalty = self._calculate_balance_penalty(plan)
 
-        # Congestion penalty
         congestion_penalty = 0
         for station in plan:
             current_assignments = self.plan_assignments.get(station, 0)
             congestion_penalty += current_assignments * 200
 
-        # NEW: Operator-specific priority bonus
-        # Higher priority operators get lower scores (preferred)
+        # FIXED: Much stronger operator priority bonus
         operator_priority = self.get_operator_priority(bus.operator)
-        priority_bonus = -1 * (operator_priority - 1.0) * 500  # Negative = better score
+        priority_bonus = -1 * operator_priority * 1000  # Was: -1 * (op-1.0) * 500
 
         score = (
             self.w_individual * individual_cost
             + self.w_operator * operator_cost
             + self.w_overall * (balance_penalty + congestion_penalty)
-            + priority_bonus  # Priority operators get score reduction
+            + priority_bonus
         )
-
         return score
 
     def _calculate_balance_penalty(self, plan: List[str]) -> float:
@@ -149,7 +139,6 @@ class ScoringSystem:
     ) -> int:
         if not schedule:
             return 0
-
         for i, (start, end) in enumerate(schedule):
             if arrival_time >= end:
                 if i + 1 < len(schedule):
@@ -162,23 +151,17 @@ class ScoringSystem:
                     return 0
                 else:
                     return end - arrival_time
-
         if schedule and arrival_time < schedule[-1][1]:
             return schedule[-1][1] - arrival_time
-
         return 0
 
     def _calculate_operator_cost(self, bus, predicted_wait: int) -> float:
         operator = bus.operator
-
         if operator not in self.operator_wait_times:
             self.operator_wait_times[operator] = []
-
         temp_waits = self.operator_wait_times[operator] + [predicted_wait]
-
         if len(temp_waits) < 2:
             return 0
-
         try:
             variance = statistics.variance(temp_waits)
             return variance
@@ -214,7 +197,6 @@ class ScoringSystem:
 
             self.station_schedule[charge_station].append([start_time, end_time])
             self.station_schedule[charge_station].sort()
-
             self.plan_assignments[charge_station] = (
                 self.plan_assignments.get(charge_station, 0) + 1
             )
@@ -231,34 +213,26 @@ class ScoringSystem:
 
     def calculate_dynamic_priority(self, bus, current_time: int) -> float:
         """
-        Calculate dynamic priority for queue ordering.
-        HIGHER priority buses get served first.
-        Now includes per-operator priority weights.
+        FIXED: Strong operator priority for queue ordering.
+        Higher priority operators ALWAYS jump the queue.
+        Returns negative value (for min-heap), more negative = higher priority.
         """
-        # Base wait time priority (buses waiting longer get higher priority)
         actual_waited = (
             current_time - bus.current_station_arrival
             if bus.current_station_arrival > 0
             else 0
         )
-
-        # Battery urgency (lower battery = higher priority)
         battery_deficit = 240 - bus.battery
         battery_urgency = battery_deficit / 240.0 * 100
-
-        # NEW: Operator-specific priority multiplier
         operator_priority = self.get_operator_priority(bus.operator)
 
-        # Priority formula (higher number = higher priority)
-        # Negative because heapq is min-heap (we want max priority first)
+        # FIXED: Much stronger operator influence
+        # Higher priority = much more negative = served first
         priority = -(
-            actual_waited
-            * 2
-            * operator_priority  # Wait time weighted by operator priority
-            + battery_urgency * 0.5
-            + operator_priority * 100  # Base priority bonus for high-priority operators
+            actual_waited * 10 * operator_priority  # Wait time multiplied by priority
+            + battery_urgency * 2
+            + operator_priority * 1000  # MASSIVE base bonus for high-priority operators
         )
-
         return priority
 
 
@@ -279,16 +253,13 @@ class Simulation:
 
     def add_bus(self, bus: Bus):
         self.buses[bus.id] = bus
-        # Auto-register operator if not exists
         if bus.operator not in self.scoring.operator_configs:
             self.scoring.add_operator(bus.operator, priority_weight=1.0)
 
     def add_operator(self, operator_id: str, priority_weight: float = 1.0):
-        """Add or update an operator with custom priority"""
         self.scoring.add_operator(operator_id, priority_weight)
 
     def remove_operator(self, operator_id: str):
-        """Remove an operator"""
         self.scoring.remove_operator(operator_id)
 
     def schedule_event(
@@ -335,13 +306,11 @@ class Simulation:
 
     def optimize_all_buses(self):
         sorted_buses = sorted(self.buses.items(), key=lambda x: x[1].arrival_time)
-
         for bus_id, bus in sorted_buses:
             self.optimize_single_bus(bus)
 
     def optimize_single_bus(self, bus: Bus):
         plans = self.route.get_minimal_feasible_plans(bus)
-
         if not plans:
             return
 
@@ -424,52 +393,45 @@ class Simulation:
             self.charger_queues.get(station_name)
             and station.get_available_chargers_count(time) > 0
         ):
-            # Get priorities for all waiting buses
             bus_priorities = []
             for bus_id in self.charger_queues[station_name]:
                 if bus_id in self.buses:
                     bus = self.buses[bus_id]
-                    # Use dynamic priority (now operator-aware)
                     priority = self.scoring.calculate_dynamic_priority(bus, time)
                     bus_priorities.append((priority, bus_id))
 
             if not bus_priorities:
                 break
 
-            # Sort by priority (lowest number = highest priority in min-heap)
+            # Sort by priority (most negative = highest priority)
             bus_priorities.sort()
 
-            # Serve highest priority bus first
+            # DEBUG: Uncomment to see queue ordering
+            # for p, bid in bus_priorities:
+            #     b = self.buses[bid]
+            #     print(f"  Queue: {bid} ({b.operator}) priority={p}")
+
             _, selected_bus_id = bus_priorities[0]
             self.charger_queues[station_name].remove(selected_bus_id)
 
             bus = self.buses[selected_bus_id]
             self.initiate_charging(time, bus, station_name)
 
-            # Update time for next iteration
             time = station.get_earliest_available_time()
 
     def initiate_charging(self, time: int, bus: Bus, station_name: str):
-        """
-        Start charging a bus at a station.
-        Tracks wait time correctly for both bus and station.
-        """
         station = self.stations[station_name]
 
-        # Calculate actual wait time based on when bus arrived
         arrival_time = (
             bus.current_station_arrival if bus.current_station_arrival > 0 else time
         )
         actual_wait = time - arrival_time
 
-        # Update bus statistics
         bus.total_wait_time += actual_wait
 
-        # Use arrival_time so station tracks wait correctly
         start_time, end_time = station.occupy_charger(arrival_time, self.charge_time)
         bus.total_charge_time += self.charge_time
 
-        # Schedule completion event
         self.schedule_event(end_time, "charge_complete", bus.id, station_name)
 
     def handle_charge_complete(self, time: int, bus: Bus, station_name: str):
@@ -508,12 +470,11 @@ class Simulation:
         )
 
     def get_results(self):
-        """Return simulation results including station statistics"""
         results = {
             "forward": [],
             "reverse": [],
             "station_stats": [],
-            "operator_priorities": {},  # NEW: Include operator config
+            "operator_priorities": {},
         }
 
         for bus_id, bus in self.buses.items():
@@ -530,13 +491,11 @@ class Simulation:
                     "charge_time": bus.total_charge_time,
                     "travel_time": bus.total_travel_time,
                 }
-
                 if bus.direction == "forward":
                     results["forward"].append(bus_data)
                 else:
                     results["reverse"].append(bus_data)
 
-        # Station statistics
         for station_name, station in self.stations.items():
             stats = station.get_utilization_stats()
             results["station_stats"].append(
@@ -549,7 +508,6 @@ class Simulation:
                 }
             )
 
-        # Operator priorities
         for op_id, op_config in self.scoring.operator_configs.items():
             results["operator_priorities"][op_id] = op_config.priority_weight
 
